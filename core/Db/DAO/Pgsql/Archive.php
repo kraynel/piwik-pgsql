@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  *  Piwik _ Open source web analytics
  *
@@ -342,17 +342,7 @@ class Archive extends \Piwik\Db\DAO\Mysql\Archive
      */
     protected function md5_to_64bit($md5)
     {
-        $INT = 2147483647; # max. 32 bit integer on PHP
-        $int_max = sprintf("%0.1f", $INT * $INT);
-        $int = sprintf("%0.1f", $INT);
-        
-        $md5 = sprintf("%0.1f", hexdec($md5));
-        while ($md5 > $int_max) { $md5 = $md5 / $int; }
-
-        $quotient = $md5 / $int_max;
-        $remainder = $md5 - (int)($quotient * $int_max);
-
-        return sprintf("%0.0f", $remainder);
+		return sprintf("%u", crc32($md5));
     }
 
     protected function prepareForBinary($table)

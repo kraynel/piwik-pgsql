@@ -562,7 +562,7 @@ class LogAggregator
                     'log_conversion_item.server_time >= ?',
                     'log_conversion_item.server_time <= ?',
                     'log_conversion_item.idsite = ?',
-                    'log_conversion_item.deleted = 0'
+                    'log_conversion_item.deleted = FALSE'
                 )
             ),
 
